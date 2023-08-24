@@ -11,6 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Setup SSH keys
+      run: |
+        eval "$(ssh-agent -s)"
+        ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+
     - name: Checkout code from mirror
       uses: actions/checkout@v2
       with:
@@ -18,7 +23,7 @@ jobs:
 
     - name: Checkout dev repository
       run: |
-        git clone https://github.com/ShiqiYang2022/template_84
+        git clone git@github.com:ShiqiYang2022/template_84.git
         git fetch --unshallow
         cd template_84
         git checkout master 
@@ -26,8 +31,6 @@ jobs:
     - name: Merge and Push
       run: |
         cd template_84
-        git config --global user.email "shiqi.yang2022@gmail.com"
-        git config --global user.name "ShiqiYang2022"
         git config pull.rebase false
         git pull ../ 84_shift_overleaf
         git push origin master
