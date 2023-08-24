@@ -27,4 +27,5 @@ jobs:
       run: |
         cd template_84
         git pull ../ 84_shift_overleaf
+        git config pull.rebase false
         git push origin master
