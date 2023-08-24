@@ -4,7 +4,7 @@ name: Sync Back to Dev Branch 84
 on:
   push:
     branches:
-      - 'master'
+      - '84_shift_overleaf'
 
 jobs:
   sync_back:
@@ -14,16 +14,16 @@ jobs:
     - name: Checkout code from mirror
       uses: actions/checkout@v2
       with:
-        ref: 'master'
+        ref: '84_shift_overleaf'
 
     - name: Checkout dev repository
       run: |
         git clone https://github.com/ShiqiYang2022/template_84
         cd template_84
-        git checkout 84_shift_overleaf
+        git checkout master 
 
     - name: Merge and Push
       run: |
         cd template_84
         git pull ../
-        git push origin 84_shift_overleaf
+        git push origin master
