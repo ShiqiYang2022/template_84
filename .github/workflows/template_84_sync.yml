@@ -26,6 +26,8 @@ jobs:
     - name: Merge and Push
       run: |
         cd template_84
+        git config --global user.email "shiqi.yang2022@gmail.com"
+        git config --global user.name "Shiqi Yang"
         git config pull.rebase false
         git pull ../ 84_shift_overleaf
         git push origin master
