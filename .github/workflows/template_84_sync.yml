@@ -1,0 +1,29 @@
+
+name: Sync Back to Dev Branch 84
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  sync_back:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code from mirror
+      uses: actions/checkout@v2
+      with:
+        ref: 'master'
+
+    - name: Checkout dev repository
+      run: |
+        git clone https://github.com/ShiqiYang2022/template_issue84
+        cd 84_shift_overleaf
+        git checkout 84_shift_overleaf
+
+    - name: Merge and Push
+      run: |
+        cd <project_name>
+        git pull ../
+        git push origin 84_shift_overleaf
