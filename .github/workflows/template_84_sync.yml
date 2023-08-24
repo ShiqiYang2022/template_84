@@ -18,12 +18,12 @@ jobs:
 
     - name: Checkout dev repository
       run: |
-        git clone https://github.com/ShiqiYang2022/template_issue84
-        cd 84_shift_overleaf
+        git clone https://github.com/ShiqiYang2022/template_84
+        cd template_84
         git checkout 84_shift_overleaf
 
     - name: Merge and Push
       run: |
-        cd <project_name>
+        cd template_84
         git pull ../
         git push origin 84_shift_overleaf
