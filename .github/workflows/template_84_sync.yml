@@ -19,6 +19,7 @@ jobs:
     - name: Checkout dev repository
       run: |
         git clone https://github.com/ShiqiYang2022/template_84
+        git fetch --unshallow
         cd template_84
         git checkout master 
 
