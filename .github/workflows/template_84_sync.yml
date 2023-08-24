@@ -26,6 +26,6 @@ jobs:
     - name: Merge and Push
       run: |
         cd template_84
-        git pull ../ 84_shift_overleaf
         git config pull.rebase false
+        git pull ../ 84_shift_overleaf
         git push origin master
