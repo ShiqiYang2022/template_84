@@ -1,0 +1,40 @@
+
+name: Sync Back to Dev Branch 84
+
+on:
+  push:
+    branches:
+      - '84_shift_overleaf'
+
+jobs:
+  sync_back:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Setup SSH keys
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+    - name: Checkout code from mirror
+      uses: actions/checkout@v2
+      with:
+        ref: '84_shift_overleaf'
+
+    - name: Checkout dev repository
+      run: |
+        git clone git@github.com:ShiqiYang2022/template_84.git
+        git fetch --unshallow
+        cd template_84
+        git checkout master 
+
+    - name: Merge and Push
+      run: |
+        cd template_84
+        git config pull.rebase false
+        git config --global user.email "shiqi.yang2022@gmail.com"
+        git config --global user.name "ShiqiYang2022"
+        git pull ../ 84_shift_overleaf
+        git push origin master
