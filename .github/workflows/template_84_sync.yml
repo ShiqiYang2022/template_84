@@ -25,7 +25,7 @@ jobs:
 
     - name: Checkout dev repository
       run: |
-        git clone git@github.com:ShiqiYang2022/template_84.git
+        git clone --config core.fileMode=false git@github.com:ShiqiYang2022/template_84.git
         git fetch --unshallow
         cd template_84
         git checkout master 
