@@ -37,5 +37,7 @@ jobs:
         git config --global user.email "shiqi.yang2022@gmail.com"
         git config --global user.name "ShiqiYang2022"
         git config --global core.fileMode false
-        git pull ../ 84_shift_overleaf
+        git fetch ../ 84_shift_overleaf
+        git config core.fileMode false
+        git merge FETCH_HEAD
         git push origin master
